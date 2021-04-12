@@ -1,7 +1,0 @@
-﻿  pch.cpp
-  Client.cpp
-E:\KHTN\Mạng máy tính\Project1\Project1\Client.cpp(22,1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
-  Clients.cpp
-E:\KHTN\Mạng máy tính\Project1\Project1\Clients.cpp(132,1): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "pch.h"' to your source?
-  Project1.cpp
-  Generating Code...
