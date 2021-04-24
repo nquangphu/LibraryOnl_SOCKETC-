@@ -30,11 +30,13 @@ def Main():
         # ask the client whether he wants to continue
         ans = input('\nDo you want to continue(y/n) :')
         if ans == 'y':
-            continue
+            while True:
+                message=input('Client: ')
+                client.sendall(bytes(message,"utf8"))
         else:
             break
     # close the connection
     s.close()
   
-if __name__ == '__main__':
+if __name__ == '__main__' :
     Main()

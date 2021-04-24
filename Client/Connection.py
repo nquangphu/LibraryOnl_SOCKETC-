@@ -6,7 +6,9 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
 def Connect(IP_address):
-    try: s.connect((IP_address.get() , 11111))
+    try:
+        s.connect((IP_address.get() , 80))
+        print("success")
     except: print("Cannot access to server") 
 
 def Send(typereq):

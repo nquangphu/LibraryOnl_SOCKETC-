@@ -36,17 +36,23 @@ btn_cn.grid(row=0,column=1,pady=2)
 btn_cn['command']  = Connect
 
 ##shutdown
-def shutWind():
+def shutWind_cmd():
     Send("Shutdown")
-btn_std=Button(table,text="Tắt máy",width=10,height=2,command=shutWind)
+btn_std=Button(table,text="Tắt máy",width=10,height=2,command=shutWind_cmd)
 btn_std.grid(row=2,column=0,pady=2)
 ##
-def exit():
+def exit_cmd():
+    Send("Thoat")
     s.close()
     table.destroy()
-btn_ext=Button(table,text="Thoát",width=10,height=2,command=exit)
+btn_ext=Button(table,text="Thoát",width=10,height=2,command=exit_cmd)
 btn_ext.grid(row=3,column=2,pady=2)
-
+##
+def screenShot_cmd():
+    Send("Chup")
+btn_scrst=Button(table,text="Chụp màn hình",width=15,height=2,command=screenShot_cmd)
+btn_scrst.grid(row=2,column=1,pady=2)
+##
 
 
 
@@ -82,9 +88,7 @@ process_running_button.grid(row=1,column=1,pady=2)
 
 
 
-screen_shot_button=Button(table,text="Chụp màn hình",width=15,height=2)
-screen_shot_button.grid(row=2,column=1,pady=2)
-##
+
 keystroke_button=Button(table,text="Keystroke",width=10,height=2)
 keystroke_button.grid(row=1,column=2,pady=2)
 ##
