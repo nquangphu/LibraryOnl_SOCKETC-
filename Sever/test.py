@@ -1,4 +1,3 @@
-
 # import socket programming library
 import socket
   
@@ -32,7 +31,7 @@ def threaded(c):
   
   
 def Main():
-    host = "10.124.3.193"
+    host = ""
   
     # reverse a port on your computer
     # in our case it is 12345 but it
