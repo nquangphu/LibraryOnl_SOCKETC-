@@ -68,11 +68,37 @@ btn_ext['command'] = exit_cmd
 #--------- BUTTON CHỤP MÀN HÌNH ---------#
 def screenShot_cmd():
     Send("Chup")
+    # myfile = open(basename % imgcounter, 'wb')
+    # data = s.recv(40960000)
+    # txt = str(data)
+    # if not data:
+    #     myfile.close()
+    # myfile.write(data)
+    # myfile.close()
+    
+    
+def wind_pic():
+    picwind = Tk()
+    picwind.title("pic".center(80))
+    pwind.geometry("400x330")
+
+
+    btn_pic_scrst = Button(picwind, text = "Chụp", width = 10, height = 11, relief = GROOVE, 
+                        activebackground = "royalblue", activeforeground = "white")
+    btn_pic_scrst.place(relx = 0.75, rely = 0.07)
+    btn_pic_save = Button(picwind, text = "Lưu", width = 10, height = 5, relief = GROOVE, 
+                        activebackground = "royalblue", activeforeground = "white")
+    btn_pic_save.place(relx = 0.75, rely = 0.7)
+    picwind.mainloop()
+    
 
 btn_scrst = Button(window, text = "Chụp\nmàn hình", width = 10, height = 5, relief = GROOVE, 
                         activebackground = "royalblue", activeforeground = "white")
 btn_scrst.place(relx = 0.43, rely = 0.43)
 btn_scrst['command'] = screenShot_cmd
+
+
+
 
 
 #--------- BUTTON APP RUNNING ---------#
@@ -89,7 +115,31 @@ btn_prcs_rng.place(relx = 0.03, rely = 0.18)
 btn_keystrk = Button(window, text = "Keystroke", width = 15, height = 10, relief = GROOVE, 
                         activebackground = "royalblue", activeforeground = "white")
 btn_keystrk.place(relx = 0.65, rely = 0.18)
+def wind_proc():
+    procwind = Tk()
+    procwind.title("process".center(60))
+    procwind.geometry("350x280")
 
+    btn_proc_kill = Button(procwind, text = "Kill", width = 8, height = 3, relief = GROOVE, 
+                        activebackground = "royalblue", activeforeground = "white")
+    btn_proc_kill.place(relx = 0.03, rely = 0.06)
+
+    btn_proc_view = Button(procwind, text = "Xem", width = 8, height = 3, relief = GROOVE, 
+                        activebackground = "royalblue", activeforeground = "white")
+    btn_proc_view.place(relx = 0.28, rely = 0.06)
+
+    btn_proc_del = Button(procwind, text = "Xóa", width = 8, height = 3, relief = GROOVE, 
+                        activebackground = "royalblue", activeforeground = "white")
+    btn_proc_del.place(relx = 0.53, rely = 0.06)
+
+    btn_proc_start = Button(procwind, text = "Start", width = 8, height = 3, relief = GROOVE, 
+                        activebackground = "royalblue", activeforeground = "white")
+    btn_proc_start.place(relx = 0.78, rely = 0.06)
+
+    #listbox_proc = Listbox(procwind,width = 40, height = )
+
+
+    procwind.mainloop()
 
 #--------- BUTTON SỬA REGISTRY ---------#
 btn_rgt = Button(window, text = "Sửa registry", width = 25, height = 4, relief = GROOVE, 
