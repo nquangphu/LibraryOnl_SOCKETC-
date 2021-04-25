@@ -5,12 +5,22 @@ import socket
 import threading
 import os
 import pyautogui
+import datetime
+import time
 
 
 def takeScreenshot():
     
     myScreenshot = pyautogui.screenshot()
     myScreenshot.save("screenshot.png")
+    txt = "screenshot.png"
+    return txt
+
+# def send_Image(filename, server):
+#     f = open(filename, 'rb')
+#     l = f.read(1024)
+#     #server.sendall(l)
+#     print("Image successfully sent to client")
 
 def server_listen(server):
     server.listen(5)
@@ -30,8 +40,18 @@ def server_listen(server):
             if str_data == "Shutdown":
                 os.system('shutdown -s')
             else:
-                if str_data == "Chup":
-                    takeScreenshot()
+                while True:
+                    if str_data == "Chup":
+                        name_img = takeScreenshot()
+                        print(name_img)
+                        f = open(name_img, 'rb')
+                        l = f.read(1024)
+                        c.send(l)
+                        print("Image successfully sent to client")
+                        data = c.recv(1024)
+                        str_data = data.decode("utf8")
+                    else:
+                        break
                 else:
                     if str_data == "Thoat":
                         break
@@ -47,7 +67,7 @@ def clickButton():
     btn['underline'] = 5
     messagebox.showinfo("Thông báo", "Mở server thành công")
 
-    host = "192.168.1.92"
+    host = "192.168.1.12"
     port = 12345
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((host, port))
