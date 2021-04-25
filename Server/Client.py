@@ -1,5 +1,4 @@
 from tkinter import *
-from PIL import Image,ImageTk
 import socket
 from tkinter import messagebox
 
