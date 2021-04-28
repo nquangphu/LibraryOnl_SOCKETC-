@@ -6,6 +6,12 @@ window1.title("Client")
 window1.geometry("400x200")
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 ######################## IP CONNECT ####################
+def Send():
+    s.send(data.encode())
+
+def Receive():
+    return s.recv(1024)
+
 def Connect():
     port = 80
     while True:
@@ -58,19 +64,22 @@ def LogIn():
     btn_submit = Button(window_lgin, text = "Submit")
     btn_submit.place(x = 40, y = 130)
     window_lgin.mainloop()
-btn_lgin['command'] = LogIn
+#btn_lgin['command'] = LogIn
 
 ######################### SIGN IN ###########################
-def Check(a,b):
+def CheckAndSend(a,b,c):
     if a == b:
         messagebox.showinfo("Status","Sign in success")
+        Send(b,c)
+
     else:
         messagebox.showinfo("Status","Sign in error")
+       
 def SignIn():
     window_sgin = Toplevel(window1)
     window_sgin.title("Sign in")
     window_sgin.geometry("400x200")
-
+    
     usn = StringVar(window_sgin)
     pwd = StringVar(window_sgin)
     pwd2 = StringVar(window_sgin)
@@ -95,9 +104,55 @@ def SignIn():
 
     btn_submit = Button(window_sgin, text = "Submit")
     btn_submit.place(x = 40, y = 160)
-    #btn_submit['command'] = lambda: Check(pwd, pwd2)
-
+    btn_submit['command'] = lambda: CheckAndSend(pwd, pwd2, usn)
+    
     window_sgin.mainloop()
-btn_sgin['command'] = SignIn
+#btn_sgin['command'] = SignIn
+############# SEARCH ###############################
+# window_sch = Tk()
+# window_sch.title("Search")
+# window_sch.geometry("400x400")
+
+# F_ID = StringVar(window_sch)
+# F_Name = StringVar(window_sch)
+# F_Type = StringVar(window_sch)
+# F_Author = StringVar(window_sch)
+
+# Label_sch = Label(window_sch, text = "ONLINE LIBRARY", font = "Arial", fg = "maroon2")
+# Label_sch.place(x = 130, y = 30)
+
+# Label_ID = Label(window_sch, text = "F_ID", fg = "light sea green", font = "Arial")
+# Label_ID.place(x = 20, y = 80)
+
+# Label_Name = Label(window_sch, text = "F_Name", fg = "light sea green", font = "Arial")
+# Label_Name.place(x = 20, y = 130)
+
+# Label_Type = Label(window_sch, text = "F_Type", fg = "light sea green", font = "Arial")
+# Label_Type.place(x = 20, y = 180)
+
+# Label_Author = Label(window_sch, text = "F_Author", fg = "light sea green", font = "Arial")
+# Label_Author.place(x = 20, y = 230)
+
+# Entry_ID = Entry(window_sch, textvariable = F_ID, width = 30)
+# Entry_ID.place(x = 100, y = 80)
+
+# Entry_Name = Entry(window_sch, textvariable = F_Name, width = 30)
+# Entry_Name.place(x = 100, y = 130)
+
+# Entry_Type = Entry(window_sch, textvariable = F_Type, width = 30)
+# Entry_Type.place(x = 100, y = 180)
+
+# Entry_Author = Entry(window_sch, textvariable = F_Author, width = 30)
+# Entry_Author.place(x = 100, y = 230)
+
+# btn_sch = Button(window_sch, text = "Search", font = "Arial", bg = "green2", width = 10)
+# btn_sch.place(x = 40, y = 300)
+
+# btn_ext = Button(window_sch, text = "Exit", font = "Arial", bg = "red2", width = 10)
+# btn_ext.place(x = 240, y = 300)
+
+
+# window_sch.mainloop()
+################################# VIEW ############################
 
 window1.mainloop()
