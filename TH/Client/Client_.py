@@ -18,9 +18,11 @@ def Connect():
         try:
             s.connect((host.get(),port))
             messagebox.showinfo("Status", "Successfully")
+            return 1
             break
         except:
            messagebox.showinfo("Status", "Unsuccessfully")
+           return 0
            break
 
 host = StringVar(window1)
@@ -32,7 +34,7 @@ Entry_IP.place(x = 50, y = 30)
 
 btn_cnt = Button(window1, text = "Connect", fg = "navy", bg = "snow")
 btn_cnt.place(x = 250, y = 30) 
-#btn_cnt["command"] = Connect
+btn_cnt["command"] = Connect
 
 btn_lgin = Button(window1, text = "Log in", fg = "navy", bg = "snow", width = 10)
 btn_lgin.place(x = 60, y = 80)
@@ -63,17 +65,19 @@ def LogIn():
 
     btn_submit = Button(window_lgin, text = "Submit")
     btn_submit.place(x = 40, y = 130)
+    Send("signin"+str(usn)+str(pwd))
     window_lgin.mainloop()
-#btn_lgin['command'] = LogIn
+# if Connect() == 1:
+#     btn_lgin['command'] = LogIn
 
 ######################### SIGN IN ###########################
-def CheckAndSend(a,b,c):
-    if a == b:
-        messagebox.showinfo("Status","Sign in success")
-        Send(b,c)
+# def CheckAndSend(a,b,c):
+#     if a == b:
+#         messagebox.showinfo("Status","Sign in success")
+#         Send("signup"+str(c),str(b))
 
-    else:
-        messagebox.showinfo("Status","Sign in error")
+#     else:
+#         messagebox.showinfo("Status","Sign in error")
        
 def SignIn():
     window_sgin = Toplevel(window1)
@@ -104,10 +108,12 @@ def SignIn():
 
     btn_submit = Button(window_sgin, text = "Submit")
     btn_submit.place(x = 40, y = 160)
-    btn_submit['command'] = lambda: CheckAndSend(pwd, pwd2, usn)
+    btn_submit['command'] =  Send("signup"+str(usn),str(pwd2))
     
     window_sgin.mainloop()
-#btn_sgin['command'] = SignIn
+if Connect() == 1:
+    btn_sgin['command'] = SignIn
+    btn_lgin['command'] = LogIn
 ############# SEARCH ###############################
 # window_sch = Tk()
 # window_sch.title("Search")
