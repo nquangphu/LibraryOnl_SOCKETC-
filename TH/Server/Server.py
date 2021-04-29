@@ -7,6 +7,8 @@ import threading
 from _thread import *
 from PIL import Image,ImageTk
 from tkinter.ttk import Frame, Style
+sc = "Success"
+er = "Error"
 
 def create_list_book():
     mylist = list()
@@ -56,20 +58,26 @@ def check_account_signin(username, password):
     return check
 
 def check_account_signup(username):
-    check = False
+    check = True
     with open('list_account.txt') as file:
         for line in file:
             (user, pw) = line.split()
             if username == user:
-                check = True
+                check = False
                 break
     return check
+
+def search_book(conn, data_str):
+    (ID, name, author, pbsh, Type) = data_str.split('+')
+    filename = "Database\Book\B" + ID + ".txt"
+    f = open(filename, 'r')
+    data = f.read()
+    conn.send(data.encode())
 
 def handle_client(conn, addr):
     print("[NEW CONNECTION] {addr} connected.")
 
-    connected = True
-    while connected:
+    while True:
         data = conn.recv(1024)
         if not data:
             print("[EXIT] Not data!")
@@ -77,20 +85,28 @@ def handle_client(conn, addr):
         str_data = data.decode('utf-8')
         print(str_data)
         (method, username, password) = str_data.split('+')
-        if method == "signin":
+        if method == "Signin":
             if check_account_signin(username, password) == True:
                 print("Sign in thanh cong")
-                conn.send("Success".encode(1024))
+                print(username, password)
+                conn.sendall(sc.encode())
+                data_sch = conn.recv(1024).decode('utf-8')
+                search_book(conn, data_sch)
             else:
+                
                 print("Sign in that bai")
-                conn.send("Error".encode(1024))
+                print(username, password)
+                conn.sendall(er.encode())
         else:
             if check_account_signup(username) == True:
                 print("Sign up thanh cong")
-                conn.send("Success".encode(1024))
+                print(username, password)
+
+                conn.send(sc.encode())
             else:
                 print("Sign up that bai")
-                conn.send("Error".encode(1024))
+                print(username, password)
+                conn.send(er.encode())
     
     conn.close()
 
@@ -120,6 +136,7 @@ def click_btn_open():
 window = Tk()
 window.title("Server")
 window.geometry("600x400")
+window.configure(bg = 'blue')
 
 img_tmp = Image.open("image.jpg")
 img_tmp = img_tmp.resize((500, 135), Image.ANTIALIAS)

@@ -1,0 +1,3 @@
+This widget implements a display box where you can place text or images. The text displayed by this widget can be updated at any time you want.
+
+It is also possible to underline part of the text (like to identify a keyboard shortcut) and span the text across multiple lines.
