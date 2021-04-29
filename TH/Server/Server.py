@@ -5,6 +5,35 @@ import pyautogui
 import socket
 import threading
 from _thread import *
+from PIL import Image,ImageTk
+from tkinter.ttk import Frame, Style
+
+def create_list_book():
+    mylist = list()
+    with open('Database\list_book.txt') as file:
+        for line in file:
+            data = line.rstrip('\n')
+            tup = (data)
+            mylist.append(tup)
+
+    return mylist
+
+def create_list_search(index):
+    mylist = list()
+    for i in list_book:
+        data = (ID, name, author, pbsh, Type) = i.split(',')
+        info = list(data)
+        check = info[index] in mylist
+        if check == False:
+            mylist.append(info[index])
+        info.clear()
+
+    return mylist
+
+list_book = create_list_book()
+
+list_author = create_list_search(2)
+list_type = create_list_search(4)
 
 def open_server():
     host = socket.gethostname()
@@ -16,33 +45,65 @@ def open_server():
     print("Socket binded to port ", port)
     return s
 
-def threaded(c):
-    while True:
-        data = c.recv(1024)
+def check_account_signin(username, password):
+    check = False
+    with open('list_account.txt') as file:
+        for line in file:
+            (user, pw) = line.split()
+            if username == user and password == pw:
+                check = True
+                break
+    return check
+
+def check_account_signup(username):
+    check = False
+    with open('list_account.txt') as file:
+        for line in file:
+            (user, pw) = line.split()
+            if username == user:
+                check = True
+                break
+    return check
+
+def handle_client(conn, addr):
+    print("[NEW CONNECTION] {addr} connected.")
+
+    connected = True
+    while connected:
+        data = conn.recv(1024)
         if not data:
-            print('Not data')
-            print_lock.release()
+            print("[EXIT] Not data!")
             break
-        str_data = data.decode('ascii')
+        str_data = data.decode('utf-8')
         print(str_data)
-        if str_data == "Thoat":
-            print_lock.release()
-            break
-        strig = input("Server: ")
-        c.send(strig.encode('ascii'))
+        (method, username, password) = str_data.split('+')
+        if method == "signin":
+            if check_account_signin(username, password) == True:
+                print("Sign in thanh cong")
+                conn.send("Success".encode(1024))
+            else:
+                print("Sign in that bai")
+                conn.send("Error".encode(1024))
+        else:
+            if check_account_signup(username) == True:
+                print("Sign up thanh cong")
+                conn.send("Success".encode(1024))
+            else:
+                print("Sign up that bai")
+                conn.send("Error".encode(1024))
+    
+    conn.close()
 
-    c.close()
 
-def server_listen(s):
+def start(s):
     s.listen(5)
-    print("socket is listening...")
   
     while True:
-        c, addr = s.accept()
+        conn, addr = s.accept()
         print('Connected to :', addr[0], ':', addr[1])
-  
-        start_new_thread(threaded, (c,))
-    s.close()    
+        thread = threading.Thread(target = handle_client, args = (conn, addr))
+        thread.start()
+        print(f"[ACTIVE CONNECTIONS] {threading.activeCount() - 1}") 
 
     return s
 
@@ -53,16 +114,22 @@ def click_btn_open():
     btn_open['text'] = "Tắt Server"
     messagebox.showinfo("Thông báo", "Mở server thành công")
     
-    s = server_listen(s)
-
+    s = start(s)
+    s.close()
 
 window = Tk()
 window.title("Server")
-window.geometry("200x200")
-print_lock=threading.Lock()
+window.geometry("600x400")
+
+img_tmp = Image.open("image.jpg")
+img_tmp = img_tmp.resize((500, 135), Image.ANTIALIAS)
+img = ImageTk.PhotoImage(img_tmp)
+panel = Label(window, image = img)
+panel.pack(ipady = 10)
 
 btn_open = Button(window, text = "Mở Server", pady = 15, padx = 15, font = "Arial",
-                    bd = 3, bg = "firebrick", command = click_btn_open)
+                    bd = 3, bg = "firebrick")
+btn_open['command'] = click_btn_open
 btn_open.place(relx = 0.5, rely = 0.5, anchor = CENTER)
 
 window.mainloop()
