@@ -79,7 +79,7 @@ def SignIn():
 
 #################### SIGN UP ####################################
 
-def Check_pwd(a,usn, pwd1, pwd2):
+def Check_pwd(usn, pwd1, pwd2):
     if pwd1 == pwd2:
         Sub("Signup", usn, pwd2)
     else:
@@ -170,7 +170,13 @@ def window_sch():
 def View(data):        # 10.126.1.174
     window_view = Tk()
     window_view.title("Viewbook")
-    window_view.geometry("1000x1000")
-    Label_data = Label(window_view, text = data)
-    Label_data.grid(padx = 10, pady = 10)
+    window_view.geometry("1000x500")
+    frame_view = Frame(window_view)
+    frame_view.pack(side = TOP)
+    Label_data = Label(frame_view, text = data)
+    Label_data.pack(side = LEFT)
+    #Label_data.grid(padx = 10, pady = 10)
+    scrb_view = Scrollbar(frame_view, orient = VERTICAL)
+    scrb_view.pack(side = RIGHT, fill = Y)
+    window_view.mainloop()
 window1.mainloop()
