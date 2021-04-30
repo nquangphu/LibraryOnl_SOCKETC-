@@ -205,4 +205,5 @@ def View(data):
     scrb_view = Scrollbar(frame_view, orient = VERTICAL)
     scrb_view.pack(side = RIGHT, fill = Y)
     window_view.mainloop()
+
 window1.mainloop()
