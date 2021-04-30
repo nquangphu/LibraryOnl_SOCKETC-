@@ -33,17 +33,56 @@ def create_list_search(index):
 
     return mylist
 
+def check_ID(ID, _ID):
+    if len(ID) == 0:
+        return True
+    else:
+        if ID == _ID:
+            return True
+        else:
+            return False
+
+def check_Name(name, _name):
+    if len(name) == 0:
+        return True
+    else:
+        if name == _name:
+            return True
+        else:
+            return False
+
+def check_Author(author, _author):
+    if len(author) == 0:
+        return True
+    else:
+        if author == _author:
+            return True
+        else:
+            return False
+
+def check_Type(Type, _Type):
+    if len(Type) == 0:
+        return True
+    else:
+        if Type == _Type:
+            return True
+        else:
+            return False
+
 def search_book(conn, data_str):
     info = (ID, name, author, pbsh, Type) = data_str.split('+')
     print(info)
 
-    if len(ID) != 0 or len(name) != 0:
-        if len(ID) != 0 and len(name) != 0:
+    if len(author) == 0 and len(Type) == 0 and len(ID) == 0 and len(name) == 0:
+        conn.send(nf.encode())
+
+    else:
+        if len(ID) != 0 or len(name) != 0:
             check = False
             for x in list_book:
                 (_ID, _name, _author, _pbsh, _Type) = x.split(',')
-                if ID == _ID and name == _name:
-                    filename = "Database\Book\B" + ID + ".txt"
+                if check_ID(ID, _ID) == True and check_Name(name, _name) == True and check_Author(author, _author) == True and check_Type(Type, _Type):
+                    filename = "Database\Book\B" + _ID + ".txt"
                     f = open(filename, 'r')
                     data = f.read()
                     conn.send(data.encode())
@@ -54,56 +93,23 @@ def search_book(conn, data_str):
                 conn.send(nf.encode())
 
         else:
-            if len(ID) != 0:
-                check = False
-                for x in list_book:
-                    (_ID, _name, _author, _pbsh, _Type) = x.split(',')
-                    if ID == _ID:      
-                        filename = "Database\Book\B" + ID + ".txt"
-                        f = open(filename, 'r')
-                        data = f.read()
-                        conn.send(data.encode())
-                        check = True
-                        f.close()
-                        break
-                if check == False:
-                    conn.send(nf.encode())
+            check = False
+            filename = "Database\list_search.txt"
+            fo = open(filename, 'w')
+            fo.write("*list\n")
+            for x in list_book:
+                (_ID, _name, _author, _pbsh, _Type) = x.split(',')
+                if check_Author(author, _author) == True and check_Type(Type, _Type) == True:     
+                    fo.write(str(x) + '\n')
+                    check = True
+            fo.close()
+            if check == False:
+                conn.send(nf.encode())
             else:
-                if len(author) != 0:
-                    print(author)
-                    check = author in list_author
-                    if check == False:
-                        conn.send(nf.encode())
-                    else:
-                        check = False
-                        for x in list_book:
-                            (_ID, _name, _author, _pbsh, _Type) = x.split(',')
-                            if name == _name and author == _author:
-                                filename = "Database\Book\B" + _ID + ".txt"
-                                f = open(filename, 'r')
-                                data = f.read()
-                                conn.send(data.encode())
-                                f.close()
-                                check = True
-                                break
-                        if check == False:
-                            conn.send(nf.encode())
-
-                else:
-                    print(name)
-                    check1 = False
-                    for x in list_book:
-                        (_ID, _name, _author, _pbsh, _Type) = x.split(',')
-                        if name == _name:
-                            filename = "Database\Book\B" + _ID + ".txt"
-                            f = open(filename, 'r')
-                            data = f.read()
-                            conn.send(data.encode())
-                            f.close()
-                            check1 = True
-                            break
-                    if check1 == False:
-                        conn.send(nf.encode())
+                fi = open(filename, 'r')
+                data = fi.read()
+                conn.send(data.encode())
+                fi.close()
 
 
 list_book = create_list_book()
