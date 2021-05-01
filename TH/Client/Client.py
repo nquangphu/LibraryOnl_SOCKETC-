@@ -161,7 +161,6 @@ def window_sch(window):
     btn_sch.place(x = 50, y = 290)
     btn_sch['command'] = lambda: Sub2(window_sch, Entry_ID.get(), Entry_Name.get(), Entry_Author.get(), Entry_Type.get())
 
-
     btn_ext = Button(window_sch, text = "Exit", font = "Arial 10", bg = "red", width = 10)
     btn_ext.place(x = 250, y = 290)
     btn_ext['command'] = lambda: Exit(window_sch)

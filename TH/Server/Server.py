@@ -206,8 +206,7 @@ def handle_client(conn, addr):
                 cl_sch = True
                 break
             search_book(conn, in4)
-
-    
+ 
     conn.close()
 
 
