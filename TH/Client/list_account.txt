@@ -1,4 +1,0 @@
-abc abc
-admin admin
-client client
-server server

@@ -1,1 +1,38 @@
-Day la sach Toan 1
+Introduction to Cosmology
+
+
+
+This book is based on my lecture notes for an upper-level undergraduate 
+cosmology course at The Ohio State University. The students taking the course
+were primarily juniors and seniors majoring in physics and astronomy. In my
+lectures, I assumed that my students, having triumphantly survived freshman 
+and sophomore physics, had a basic understanding of electrodynamics,
+statistical mechanics, classical dynamics, and quantum physics. As far as
+mathematics was concerned, I assumed that, like modern major generals,
+they were very good at integral and differential calculus. Readers of this
+book are assumed to have a similar background in physics and mathematics.
+In particular, no prior knowledge of general relativity is assumed; the
+(relatively) small amounts of general relativity needed to understand basic
+cosmology are introduced as needed.
+Unfortunately, the National Bureau of Standards has not gotten around
+to establishing a standard notation for cosmological equations. It seems
+that every cosmology book has its own notation; this book is no exception.
+My main motivation was to make the notation as clear as possible for the
+cosmological novice.
+I hope that reading this book will inspire students to further explorations
+in cosmology. The annotated bibliography at the end of the text provides
+a selection of recommended cosmology books, at the popular, intermediate,
+and advanced levels.
+Many people (too many to name individually) helped in the making of
+this book; I thank them all. I owe particular thanks to the students who
+took my undergraduate cosmology course at Ohio State University. Their
+feedback (including nonverbal feedback such as frowns and snores during
+lectures) greatly improved the lecture notes on which this book is based.
+Adam Black and Nancy Gee, at Addison Wesley, made possible the great
+leap from rough lecture notes to polished book. The reviewers of the text,
+both anonymous and onymous, pointed out many errors and omissions. I
+owe particular thanks to Gerald Newsom, whose careful reading of the entire
+manuscript improved it greatly. My greatest debt, however, is to Rick Pogge,
+who acted as my computer maven, graphics guru, and sanity check. (He was
+also a tireless hunter of creeping fox terrier clones.) As a small sign of my
+great gratitude, this book is dedicated to him.

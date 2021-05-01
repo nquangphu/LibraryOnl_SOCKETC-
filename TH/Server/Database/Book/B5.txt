@@ -1,1 +1,48 @@
-Day la sach Bai Tap Toan 1
+*** Natural Language Interfaces to Databases ***
+
+
+
+The purpose of this paper is to serve as an introduction to some key concepts, problems,
+methodologies, and lines of research in the area of natural language interfaces to databases.
+This paper is by no means a complete discussion of all the issues that are relevant to Nlidbs.
+The reader is also referred to [29] and [79] for alternative surveys of the same field.1 A detailed
+description of a natural language front-end that reflects the current state of the art can be
+found in [2] and [3].
+  Although the paper contains hints about the capabilities of existing Nlidbs, it does not
+contain complete descriptions of particular systems, nor is the purpose of this paper to com-
+pare particular Nlidbs. This paper is mainly based on information obtained from published
+documents. The authors do not have personal hands-on experience with most of the Nlidbs
+that will be mentioned. Whenever a system’s feature is mentioned, this means that the doc-
+uments cited state that the particular system provides this feature, and it is not implied that
+other systems do not have similar capabilities. Finally, this paper assumes that the user’s
+requests are communicated to the Nlidb by typing on a computer keyboard. Issues related
+to speech processing are not discussed.
+  The remainder of this paper is organised as follows: section 2 is a brief overview of the
+history of Nlidbs2 ; section 3 discusses the advantages and disadvantages of Nlidbs; section 4
+presents some of the linguistic problems Nlidbs have to cope with; section 5 describes archi-
+tectures adopted in existing Nlidbs; section 6 discusses portability issues related to Nlidbs;
+section 7 introduces Nlidbs that explicitly restrict the set of natural language expressions the
+user is allowed to input, so that the user can have a clearer view of what sorts of questions the
+system can understand; section 8 describes Nlidbs with reasoning modules; section 9 high-
+lights some less explored areas of Nlidb research, namely database updates, meta-knowledge
+questions, temporal questions, and multi-modal interfaces; finally, section 10 summarises the
+current state of the art.
+
+
+2        Some history
+Prototype Nlidbs had already appeared in the late sixties and early seventies. The best-
+known Nlidb of that period is Lunar [106], a natural language interface to a database
+containing chemical analyses of moon rocks. Lunar and other early natural language in-
+terfaces were each built having a particular database in mind, and thus could not be easily
+modified to be used with different databases. (Although the internal representation meth-
+ods used in Lunar were argued to facilitate independence between the database and other
+modules [105], the way that these were used was somewhat specific to that project’s needs.
+Portability issues are discussed in section 6.)
+    By the late seventies several more Nlidbs had appeared. Rendezvous [27] engaged the
+user in dialogues to help him/her formulate his/her queries. Ladder [58] could be used
+with large databases, and it could be configured to interface to different underlying database
+management systems (Dbmss). Ladder used semantic grammars (discussed in section 5.3),
+    1
+        Sections 4 and 5 were greatly influenced by [79].
+    2
+        Section 2 is largely based on information from [29], [79], and [89].

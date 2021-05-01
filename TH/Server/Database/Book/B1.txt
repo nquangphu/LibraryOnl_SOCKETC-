@@ -1,3 +1,121 @@
-This widget implements a display box where you can place text or images. The text displayed by this widget can be updated at any time you want.
+CHAPTER I.
 
-It is also possible to underline part of the text (like to identify a keyboard shortcut) and span the text across multiple lines.
+THE TELESCOPE, ITS INVENTION AND THE DEVELOPMENT OF ITS POWERS.
+
+
+The instrument which has so vastly extended our knowledge of the
+Universe, which has enabled us to acquire observations of remarkable
+precision, and supplied the materials for many sublime speculations in
+Astronomy, was invented early in the seventeenth century. Apart from
+its special application as a means of exploring the heavens with a
+capacity that is truly marvellous, it is a construction which has also
+been utilized in certain other departments with signal success. It
+provided mankind with a medium through which to penetrate far beyond
+the reach of natural vision, and to grasp objects and phenomena which
+had either eluded detection altogether or had only been seen in dim and
+uncertain characters. It has also proved a very efficient instrument
+for various minor purposes of instruction and recreation. The invention
+of the telescope formed a new era in astronomy; and though, with a
+few exceptions, men were slow at first in availing themselves of its
+far-seeing resources, scepticism was soon swept aside and its value
+became widely acknowledged.
+
+But though the telescope was destined to effect work of the utmost
+import, and to reach a very high degree of excellence in after
+times, the result was achieved gradually. Step by step its powers
+were enlarged and its qualities perfected, and thus the stream of
+astronomical discovery has been enabled to flow on, stimulated by every
+increase in its capacity.
+
+There is some question as to whom may be justly credited with
+the discovery of its principles of construction.
+There is reason to conclude, however,
+that its discovery resulted from accident rather than from theory. It
+is commonly supposed that Galileo Galilei is entitled to precedence;
+but there is strong evidence to show that he had been anticipated.
+In any case it must be admitted that Galilei[1] had priority in
+successfully utilizing its resources as a means of observational
+discovery; for he it was who, first of all men, saw Jupiters
+satellites, the crescent form of Venus, the mountains and craters on
+the Moon, and announced them to an incredible world.
+
+It has been supposed, and not without some basis of probability, that a
+similar instrument to the telescope had been employed by the ancients;
+for certain statements contained in old historical records would
+suggest that the Greek philosophers had some means of extending their
+knowledge further than that permitted by the naked eye. Democritus
+remarked that the Galaxy or Milky Way was nothing but an assemblage
+of minute stars; and it has been asked, How could he have derived this
+information but by instrumental aid? It is very probable he gained the
+knowledge by inferences having their source in close observation; for
+anyone who attentively studies the face of the sky must be naturally
+led to conclude that the appearance of the Milky Way is induced by
+immense and irregular clusterings of small stars. In certain regions
+of the heavens there are clear indications of this: the eye is enabled
+to glimpse some of the individual star-points, and to observe how they
+blend and associate with the denser aggregations which give rise to the
+milky whiteness of the Galaxy.
+
+Refracting lenses, or burning-glasses, were known at a very early
+period. A lens, roughly figured into a convex shape and obviously
+intended for magnifying objects, has been recovered from the ruins
+of Herculaneum, buried in the ejections from Vesuvius in the year 79
+A.D. Pliny and others refer to lenses that burnt by refraction, and
+describe globules of glass or crystal which, when exposed in the sun,
+transmit sufficient heat to ignite combustible material. The ancients
+undoubtedly used tubes in the conduct of their observations, but no
+lenses seem to have been employed with them, and their only utility
+consisted in the fact of their shutting out the extraneous rays of
+light. But spectacles were certainly known at an early period. Concave
+emeralds are said to have been employed by Nero in witnessing the
+combats of the gladiators, and they appear to have been the same in
+effect as the spectacles worn by short-sighted people in our own times.
+But the ancients supposed that the emerald possessed inherent qualities
+specially helpful to vision, rather than that its utility resulted
+simply from its concavity of figure. In the 13th century spectacles
+were more generally worn, and the theory of their construction
+understood.
+
+
+Fracastor, in a work published at Venice in 1538, states:If we look
+through two eye-lenses, placed the one upon the other, everything
+will appear larger and nearer. He also says:There are made certain
+eye-lenses of such a thickness that if the moon or any other celestial
+body is viewed through them they appear to be so near that their
+distance does not exceed that of the steeples of public buildings.
+
+In other writings will also be found intimations as to the important
+action of lenses; and it is hardly accountable that a matter so
+valuable in its bearings was allowed to remain without practical
+issues. The progressive tendency and the faculty of invention must
+indeed have been in an incipient stage, and contrasts strongly with the
+singular avidity with which ideas are seized upon and realized in our
+own day.
+
+
+This view of the case is, however, a very doubtful one, and the
+invention may with far greater probability be attributed to Hans
+Lippersheim in 1608. Galilei has little claim to be considered in this
+relation; for he admitted that in 1609 the news reached him that a
+Dutchman had devised an appliance capable of showing distant objects
+with remarkable clearness. He thereupon set to work and experimented
+with so much aptitude on the principles involved that he very soon
+produced a telescope for himself. With this instrument he detected
+the four satellites of Jupiter in 1610, and other successes shortly
+followed. Being naturally gratified with the improvements he had
+effected in its construction, and with the wonderful discoveries he had
+made by its use, we can almost excuse the enthusiasm which prompted him
+to attribute the invention to his own ingenuity. But while according
+him the honour due to his sagacity in devoting this instrument to
+such excellent work, we must not overlook the fact that his claim to
+priority cannot be justified. Indeed, that Galilei had usurped the
+title of inventor is mentioned in letters which passed between the
+scientific men of that time. Fuccari, writing to Kepler, says:Galileo
+wants to be considered the inventor of the telescope, though he, as
+well as I and others, first saw the telescope which a certain Dutchman
+first brought with him to Venice, and although he has only improved it
+very little.
+
+With of Hereford, and after him Calver of Chelmsford, became noted
+for the excellency of their glass mirrors. They were found nearly
+comparable to refractors of the same aperture.

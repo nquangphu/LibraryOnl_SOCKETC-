@@ -71,7 +71,6 @@ def check_Type(Type, _Type):
 
 def search_book(conn, data_str):
     info = (ID, name, author, pbsh, Type) = data_str.split('+')
-    print(info)
 
     if len(author) == 0 and len(Type) == 0 and len(ID) == 0 and len(name) == 0:
         conn.send(nf.encode())
@@ -85,7 +84,7 @@ def search_book(conn, data_str):
                     filename = "Database\Book\B" + _ID + ".txt"
                     f = open(filename, 'r')
                     data = f.read()
-                    conn.send(data.encode())
+                    conn.send((_ID + '+' + _name + "||\n" + data).encode())
                     check = True
                     f.close()
                     break
@@ -128,7 +127,7 @@ def open_server():
 
 def check_account_signin(username, password):
     check = False
-    with open('list_account.txt') as file:
+    with open('Database\list_account.txt') as file:
         for line in file:
             (user, pw) = line.split()
             if username == user and password == pw:
@@ -138,7 +137,7 @@ def check_account_signin(username, password):
 
 def check_account_signup(username):
     check = True
-    with open('list_account.txt') as file:
+    with open('Database\list_account.txt') as file:
         for line in file:
             (user, pw) = line.split()
             if username == user:
@@ -147,7 +146,7 @@ def check_account_signup(username):
     return check
 
 def update_account_file(username, password):
-    f = open("list_account.txt", 'a')
+    f = open("Database\list_account.txt", 'a')
     data = '\n' + username + ' ' + password
     f.write(data)
 
@@ -159,26 +158,24 @@ def handle_client(conn, addr):
     cl_sch = False
     while True:
         if cl_sch == False:
-            data = conn.recv(1024)
+            data = conn.recv(1024000)
         cl_sch = False
         if not data:
             print("[EXIT] Not data!")
             break
         str_data = data.decode('utf-8')
         check = True
-        print(str_data)
+        
         (method, username, password) = str_data.split('+')
 
         #---------------------- SIGN IN ----------------------#
         if method == "Signin":
             if check_account_signin(username, password) == True:
                 print("Sign in thanh cong")
-                print(username, password)
                 conn.sendall(sc.encode())
 
             else:
                 print("Sign in that bai")
-                print(username, password)
                 conn.sendall(er.encode())
                 check = False
 
@@ -186,18 +183,16 @@ def handle_client(conn, addr):
         else:
             if check_account_signup(username) == True:
                 print("Sign up thanh cong")
-                print(username, password)
                 update_account_file(username, password)
                 conn.send(sc.encode())
 
             else:
                 print("Sign up that bai")
-                print(username, password)
                 conn.send(er.encode())
                 check = False
 
         while check == True:
-            data = conn.recv(1024)
+            data = conn.recv(1024000)
             if not data:
                 break
             in4 = data.decode('utf-8')
@@ -212,7 +207,6 @@ def handle_client(conn, addr):
 
 def start(s):
     s.listen(5)
-  
     while True:
         conn, addr = s.accept()
         print('Connected to :', addr[0], ':', addr[1])
@@ -237,7 +231,7 @@ window.title("Server")
 window.geometry("600x400")
 window.configure(bg = 'pink')
 
-img_tmp = Image.open("image.jpg")
+img_tmp = Image.open("Image\image.jpg")
 img_tmp = img_tmp.resize((500, 135), Image.ANTIALIAS)
 img = ImageTk.PhotoImage(img_tmp)
 panel = Label(window, image = img)

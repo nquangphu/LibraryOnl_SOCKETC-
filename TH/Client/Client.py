@@ -4,19 +4,26 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 import tkinter.ttk as exTk
 import tkinter.scrolledtext as scllText
+from docx import Document
+import re
+import os
+from fpdf import FPDF
+import textwrap
 
+path_download = "Downloads\ID_"
 
 ##############################################################
 #------------------------ IP CONNECT ------------------------#
 def Exit(window):
     window.destroy()
+
 def Send(data):
     s.send(data.encode())
 
 def Connect(host):
     port = 80
     try:
-        s.connect((str(host),port))
+        s.connect((str(host), port))
         messagebox.showinfo("Status", "Successfully")
     except:
         messagebox.showinfo("Status", "Unsuccessfully")
@@ -27,9 +34,8 @@ def Connect(host):
 def Sub(window, kind, usn, pwd):
     print(kind + "+" + usn + "+" + pwd)
     Send(kind + "+" + usn + "+" + pwd)
-    data = s.recv(1024).decode("utf-8")
+    data = s.recv(1024000).decode("utf-8")
     if data == "Success":
-        messagebox.showinfo("Status", "Successfully")
         window_sch(window)
 
     else:
@@ -39,7 +45,7 @@ def SignIn(window):
     window_sgin.title("Sign in")
     window_sgin.geometry("400x200")
     window_sgin.configure(bg = 'pink')
-    img_sgin = Image.open("signin.jpg")
+    img_sgin = Image.open("Image\signin.jpg")
     img_sgin = img_sgin.resize((100, 27), Image.ANTIALIAS)
     imge = ImageTk.PhotoImage(img_sgin)
     label = Label(window_sgin, image = imge)
@@ -58,9 +64,9 @@ def SignIn(window):
     Entry_pwd.place(x = 110, y = 100)
 
     btn_submit = Button(window_sgin, text = "Sign in", fg = "navy", bg = "snow", width = 10,
-                         command = lambda: Sub(window_sgin, "Signin",Entry_usn.get(), Entry_pwd.get()))
+                            command = lambda: Sub(window_sgin, "Signin",Entry_usn.get(), Entry_pwd.get()))
     btn_submit.place(x = 163, y = 140)
-    
+        
     window_sgin.mainloop()
 
 
@@ -77,12 +83,12 @@ def SignUp(window):
     window_sgup.title("Sign Up")
     window_sgup.geometry("400x280")
     window_sgup.configure(bg = 'pink')
-    img_sgup = Image.open("signup.jpg")
+    img_sgup = Image.open("Image\signup.jpg")
     img_sgup = img_sgup.resize((100, 27), Image.ANTIALIAS)
     imge = ImageTk.PhotoImage(img_sgup)
     label = Label(window_sgup, image = imge)
     label.pack(pady = 10)
-    
+        
     Label_usn = Label(window_sgup, text = "Username")
     Label_usn.place( x = 40, y = 70)
 
@@ -104,7 +110,7 @@ def SignUp(window):
     btn_submit = Button(window_sgup, text = "Sign up", fg = "navy", bg = "snow", width = 10)
     btn_submit.place(x = 163, y = 200)
     btn_submit['command'] = lambda: Check_pwd(window_sgup, Entry_usn.get(), Entry_pwd.get(), Entry_pwd2.get())
-    
+        
     window_sgup.mainloop()
 
 
@@ -112,13 +118,15 @@ def SignUp(window):
 #-------------------------- SEARCH --------------------------#
 def Sub2(window_sch, a, b, c, d):
     Send(a + "+" + b + "+" + c + "++" + d)
-    data = s.recv(1024).decode("utf-8")
+    data = s.recv(1024000).decode("utf-8")
     if data == "Not found":
         messagebox.showinfo("Status", "Not found!")
     else:
-        check = data.find("*list\n")
-        if check == -1:
-            view_Book(window_sch, data)
+        check_list = data.find("*list\n")
+        if check_list == -1:
+            (id_book, _data) = data.split("||\n")
+            (ID, title_book) = id_book.split('+')
+            view_Book(window_sch, _data, ID, title_book)
         else:
             list_Book(window_sch, data)
 
@@ -127,7 +135,7 @@ def window_sch(window):
     window_sch.title("Search")
     window_sch.geometry("400x370")
     window_sch.configure(bg = 'pink')
-    img_sch = Image.open("search.jpg")
+    img_sch = Image.open("Image\search.jpg")
     img_sch = img_sch.resize((100, 27), Image.ANTIALIAS)
     imge = ImageTk.PhotoImage(img_sch)
     label = Label(window_sch, image = imge)
@@ -170,21 +178,88 @@ def window_sch(window):
 
 ################################################################
 #-------------------------- VIEW BOOK -------------------------#
-def view_Book(window_sch, data):
+def convert_TO_docx(path, ID, book_title, format):
+    document = Document()
+    myfile = open(path, 'r')
+    data = myfile.read()
+    data = re.sub(r'[^\x00-\x7F]+|\x0c',' ', data)
+    p = document.add_paragraph(data)
+    document.save(path_download + ID + '-' + book_title + format)
+    myfile.close()
+
+def convert_TO_pdf(path, ID, book_title, format):
+    a4_width_mm = 210
+    pt_to_mm = 0.35
+    fontsize_pt = 10
+    fontsize_mm = fontsize_pt * pt_to_mm
+    margin_bottom_mm = 10
+    character_width_mm = 7 * pt_to_mm
+    width_text = a4_width_mm / character_width_mm
+
+    pdf = FPDF(orientation = 'P', unit = 'mm', format = 'A4')
+    pdf.set_auto_page_break(True, margin = margin_bottom_mm)
+    pdf.add_page()
+    pdf.set_font(family = 'Courier', size = fontsize_pt)
+
+    myfile = open(path, 'r')
+    text = myfile.read()
+    splitted = text.split('\n')
+
+    for line in splitted:
+        lines = textwrap.wrap(line, width_text)
+
+        if len(lines) == 0:
+            pdf.ln()
+
+        for wrap in lines:
+            pdf.cell(0, fontsize_mm, wrap, ln = 1)
+
+    pdf.output(path_download + ID + '-' + book_title + format, 'F')
+    myfile.close()
+
+def download(data, format, ID, book_title): 
+    if len(format) != 0:
+        filename = "temp.txt"
+        f = open(filename, 'w')
+        f.write(data)
+        f.close()
+
+        if format == ".docx" or format == ".doc":
+            convert_TO_docx(filename, ID, book_title, format)
+        else:
+            if format == ".txt":
+                fo = open(path_download + ID + '-' + book_title + format, 'w')
+                fi = open(filename, 'r')
+                fo.write(fi.read())
+                fi.close()
+                fo.close()
+            else:
+                convert_TO_pdf(filename, ID, book_title, format)
+
+
+def view_Book(window_sch, data, ID, book_title):
     window_view = Toplevel(window_sch)
-    window_view.title("Viewbook")
+    window_view.title(ID + '-' + book_title)
     window_view.geometry("1000x500")
     window_view.configure(bg = 'pink')
 
-    editArea = scllText.ScrolledText(window_view, wrap = WORD, width = 20, height = 10 ) 
-    editArea.pack(padx = 5, pady = 5, fill = BOTH, expand = True) 
+    editArea = scllText.ScrolledText(window_view, wrap = WORD) 
+    editArea.pack(padx = 5, pady = 35, fill = BOTH, expand = True) 
     editArea.insert(INSERT, data)
+
+    combobox = exTk.Combobox(window_view, width = 15, values = ('.txt', '.doc', '.docx', '.pdf'))
+    combobox.place(relx = 0.8, rely = 0.945)
+
+    btn_download = Button(window_view, text = "Download", fg = "navy", bg = "snow")
+    btn_download.place(relx = 0.93, rely = 0.94)
+    btn_download['command'] = lambda:download(data, combobox.get(), ID, book_title)
 
     window_view.mainloop()
 
 def Sub3(window, data):
-    (_ID, _name, _author, _pbsh, _Type) = data.split(',')
-    Sub2(window, _ID, _name, _author, _Type)
+    if len(data) != 0:
+        (_ID, _name, _author, _pbsh, _Type) = data.split(',')
+        Sub2(window, _ID, _name, _author, _Type)
 
 def list_Book(window_sch, data):
     mylist = list(data.split('\n'))
@@ -216,7 +291,7 @@ window1.title("Client")
 window1.geometry("600x400")
 window1.configure(bg = 'pink')
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-img_tmp = Image.open("image.jpg")
+img_tmp = Image.open("Image\image.jpg")
 img_tmp = img_tmp.resize((500, 135), Image.ANTIALIAS)
 img = ImageTk.PhotoImage(img_tmp)
 panel = Label(window1, image = img)
@@ -224,7 +299,7 @@ panel.pack(pady = 10)
 Label_IP = Label(window1, text = "IP", fg = "navy", font = "Arial")
 Label_IP.place(x = 130, y = 165)
 
-Entry_IP = Entry(window1, bd = 3, bg = "gainsboro", fg = "red", width = 40)
+Entry_IP = Entry(window1, bd = 3, bg = "gainsboro", fg = "red", width = 40, text = "Enter IP")
 Entry_IP.pack(pady = 10)
 
 btn_cnt = Button(window1, text = "Connect", fg = "navy", bg = "snow", width = 10)

@@ -34,22 +34,3 @@ less, the sixth edition has been revised and updated substantially:
   sidebars involving DNS, BGP, and OSPF are included.
 viii   Preface
 
-
-
-
-Chapter 5 has been reorganized and streamlined, accounting for the ubiquity of
-switched Ethernet in local area networks and the consequent increased use of
-Ethernet in pointtopoint scenarios. Also, a new section on data center network
-ing has been added.
-Chapter 6 has been updated to reflect recent advances in wireless networks, par
-ticularly cellular data networks and 4G services and architecture.
-Chapter 7, which focuses on multimedia networking, has gone through a major
-revision. The chapter now includes an in depth discussion of streaming video,
-including adaptive streaming, and an entirely new and modernized discussion of
-CDNs. A newly added section describes the Netflix, YouTube, and Kankan video
-streaming systems. The material that has been removed to make way for these
-new topics is still available on the Companion Web site.
-Chapter 8 now contains an expanded discussion on endpoint authentication.
-Significant new material involving end of chapter problems has been added. As
-with all previous editions, homework problems have been revised, added, and removed.
-

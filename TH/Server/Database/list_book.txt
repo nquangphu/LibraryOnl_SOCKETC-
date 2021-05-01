@@ -1,6 +1,6 @@
-1,Tieng Viet 1,Nguyen Van A,2020,Sach Giao Khoa
-2,Tieng Viet 2,Nguyen Van A,2020,Sach Giao Khoa
-3,Toan 1,Nguyen Thi B,2019,Sach Giao Khoa
-4,Toan 2,Nguyen Thi B,2019,Sach Giao Khoa
-5,Bai Tap Toan 1,Nguyen Thi B,2019,Sach Bai Tap
-6,Bai Tap Toan 2,Nguyen Thi B,2019,Sach Bai Tap
+1,Telescopic Work,William F. Denning,1891,Physics and Astronomy
+2,Computer Networking,Jack London,2003,Computer Science
+3,Introduction to Cosmology,John Wiley,2003,Physics and Astronomy
+4,Recreations in Astronomy,John Wiley,2005,Physics and Astronomy
+5,Natural Language Interfaces to Databases,Androutsopoulos,1995,Computer Science
+6,Algorithmic Information Theory,Peter D. Gruenwald,2007,Computer Science
