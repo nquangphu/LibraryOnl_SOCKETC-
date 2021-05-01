@@ -20,9 +20,6 @@ def Exit(window):
 def Send(data):
     s.send(data.encode())
 
-def Exit(window):
-    Send("Exit")
-    window.destroy()
 def Connect(host):
     port = 80
     try:
@@ -285,7 +282,6 @@ def list_Book(window_sch, data):
     window_select_books.mainloop()
 
 
-
 ##################################################################
 ##################################################################
 #-------------------------- MAIN WINDOW -------------------------#
@@ -322,10 +318,5 @@ btn_sgup.place(x = 310, y = 280)
 
 btn_sgin['command'] = lambda:SignIn(window1)
 btn_sgup['command'] = lambda:SignUp(window1)
-
-btn_exit = Button(window1, text = "Exit", bg = "red2", font = "Arial",width = 10)
-btn_exit.place(x = 480, y = 350)
-btn_exit['command'] = lambda: Exit(window1)
-
 
 window1.mainloop()
