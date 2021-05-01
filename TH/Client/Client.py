@@ -8,11 +8,13 @@ import tkinter.scrolledtext as scllText
 
 ##############################################################
 #------------------------ IP CONNECT ------------------------#
-def Exit(window):
-    window.destroy()
+
 def Send(data):
     s.send(data.encode())
 
+def Exit(window):
+    Send("Exit")
+    window.destroy()
 def Connect(host):
     port = 80
     try:
@@ -177,9 +179,16 @@ def view_Book(window_sch, data):
     window_view.configure(bg = 'pink')
 
     editArea = scllText.ScrolledText(window_view, wrap = WORD, width = 20, height = 10 ) 
-    editArea.pack(padx = 5, pady = 5, fill = BOTH, expand = True) 
+    editArea.pack(padx = 5, pady = 5, fill = BOTH) 
     editArea.insert(INSERT, data)
 
+    cbb_format = Combobox(window_view, value = [".txt", ".doc", ".docx", ".pdf"], font = "Arial")
+    #cbb_format.place(x = 400, y = 470)
+    #cbb_format.pack(side = BOTTOM)
+
+    btn_download = Button(window_view, text = "Download", font = "Arial", bg = "green2", width = 10)
+    #btn_download.place(x = 500, y = 500)
+    btn_download.pack(side = BOTTOM)
     window_view.mainloop()
 
 def Sub3(window, data):
@@ -205,6 +214,7 @@ def list_Book(window_sch, data):
     btn_submit['command'] = lambda:Sub3(window_select_books, combobox.get())
 
     window_select_books.mainloop()
+
 
 
 ##################################################################
@@ -243,5 +253,10 @@ btn_sgup.place(x = 310, y = 280)
 
 btn_sgin['command'] = lambda:SignIn(window1)
 btn_sgup['command'] = lambda:SignUp(window1)
+
+btn_exit = Button(window1, text = "Exit", bg = "red2", font = "Arial",width = 10)
+btn_exit.place(x = 480, y = 350)
+btn_exit['command'] = lambda: Exit(window1)
+
 
 window1.mainloop()
